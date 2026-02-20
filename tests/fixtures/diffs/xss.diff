@@ -1,0 +1,18 @@
+diff --git a/app/views.py b/app/views.py
+index 1234567..abcdefg 100644
+--- a/app/views.py
++++ b/app/views.py
+@@ -5,3 +5,10 @@ from flask import Flask, request
+
+ app = Flask(__name__)
+
++@app.route("/search")
++def search():
++    query = request.args.get("q", "")
++    # Vulnerable: unescaped user input rendered in HTML
++    return f"<h1>Results for: {query}</h1>"
++
++@app.route("/hello")
++def hello():
++    name = request.args.get("name", "World")
++    return f"<p>Hello, {name}</p>"

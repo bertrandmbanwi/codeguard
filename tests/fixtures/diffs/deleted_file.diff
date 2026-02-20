@@ -1,0 +1,13 @@
+diff --git a/old_module.py b/old_module.py
+deleted file mode 100644
+index 1234567..0000000
+--- a/old_module.py
++++ /dev/null
+@@ -1,10 +0,0 @@
+-import os
+-
+-def old_function():
+-    pass
+-
+-def another_old():
+-    return True

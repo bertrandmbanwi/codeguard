@@ -1,0 +1,164 @@
+cwe_rules:
+  - id: CWE-89
+    title: Improper Neutralization of Special Elements used in an SQL Command
+    category: security
+    severity_if_found: CRITICAL
+    pattern_hints:
+      - SQL injection
+      - query construction
+      - string concatenation
+      - format string
+    description: SQL injection vulnerability allowing attackers to execute arbitrary SQL commands
+
+  - id: CWE-79
+    title: Improper Neutralization of Input During Web Page Generation
+    category: security
+    severity_if_found: CRITICAL
+    pattern_hints:
+      - XSS
+      - cross-site scripting
+      - unescaped HTML
+      - dangerouslySetInnerHTML
+      - innerHTML
+    description: Cross-site scripting (XSS) vulnerability
+
+  - id: CWE-78
+    title: Improper Neutralization of Special Elements used in an OS Command
+    category: security
+    severity_if_found: CRITICAL
+    pattern_hints:
+      - OS command injection
+      - shell injection
+      - exec
+      - system call
+      - subprocess
+    description: OS command injection allowing execution of arbitrary system commands
+
+  - id: CWE-22
+    title: Improper Limitation of a Pathname to a Restricted Directory
+    category: security
+    severity_if_found: HIGH
+    pattern_hints:
+      - path traversal
+      - directory traversal
+      - ".."
+      - path validation
+      - file access
+    description: Path traversal vulnerability allowing access to files outside intended directory
+
+  - id: CWE-798
+    title: Use of Hard-Coded Credentials
+    category: security
+    severity_if_found: HIGH
+    pattern_hints:
+      - hardcoded password
+      - hardcoded API key
+      - hardcoded secret
+      - credentials in code
+    description: Hard-coded credentials embedded in source code
+
+  - id: CWE-502
+    title: Deserialization of Untrusted Data
+    category: security
+    severity_if_found: CRITICAL
+    pattern_hints:
+      - pickle
+      - unsafe deserialization
+      - JSON.parse
+      - unmarshaling
+    description: Unsafe deserialization of untrusted data
+
+  - id: CWE-306
+    title: Missing Authentication for Critical Function
+    category: security
+    severity_if_found: CRITICAL
+    pattern_hints:
+      - missing auth
+      - no authentication
+      - unprotected endpoint
+      - public access
+    description: Critical function missing authentication check
+
+  - id: CWE-200
+    title: Exposure of Sensitive Information to an Unauthorized Actor
+    category: security
+    severity_if_found: HIGH
+    pattern_hints:
+      - information disclosure
+      - sensitive data exposure
+      - logging secrets
+      - error messages
+    description: Sensitive information exposed to unauthorized users
+
+  - id: CWE-400
+    title: Uncontrolled Resource Consumption
+    category: performance
+    severity_if_found: HIGH
+    pattern_hints:
+      - infinite loop
+      - unbounded allocation
+      - resource leak
+      - memory exhaustion
+    description: Uncontrolled resource consumption leading to DoS
+
+  - id: CWE-918
+    title: Server-Side Request Forgery (SSRF)
+    category: security
+    severity_if_found: HIGH
+    pattern_hints:
+      - SSRF
+      - external URL request
+      - request to internal service
+      - HTTP request
+    description: Server-side request forgery vulnerability
+
+  - id: CWE-434
+    title: Unrestricted Upload of File with Dangerous Type
+    category: security
+    severity_if_found: HIGH
+    pattern_hints:
+      - file upload
+      - file validation
+      - file extension check
+    description: Unrestricted file upload allowing dangerous file types
+
+  - id: CWE-501
+    title: Trust Boundary Violation
+    category: security
+    severity_if_found: MEDIUM
+    pattern_hints:
+      - trust boundary
+      - privileged data
+      - access control
+    description: Trust boundary violation allowing access to restricted data
+
+  - id: CWE-287
+    title: Improper Authentication
+    category: security
+    severity_if_found: CRITICAL
+    pattern_hints:
+      - weak authentication
+      - authentication bypass
+      - session hijacking
+    description: Improper authentication mechanism
+
+  - id: CWE-476
+    title: Null Pointer Dereference
+    category: bugs
+    severity_if_found: HIGH
+    pattern_hints:
+      - null check
+      - undefined access
+      - TypeError
+      - NullPointerException
+    description: Null pointer dereference leading to crashes
+
+  - id: CWE-190
+    title: Integer Overflow or Wraparound
+    category: bugs
+    severity_if_found: MEDIUM
+    pattern_hints:
+      - integer overflow
+      - buffer overflow
+      - size calculation
+    description: Integer overflow or wraparound

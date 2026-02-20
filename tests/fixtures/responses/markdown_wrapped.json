@@ -1,0 +1,16 @@
+```json
+{
+  "findings": [
+    {
+      "title": "XSS Vulnerability",
+      "severity": "HIGH",
+      "category": "security",
+      "description": "User input rendered directly in HTML without escaping.",
+      "suggestion": "Use template engine with auto-escaping or sanitize input.",
+      "line_number": 9,
+      "cwe_id": "CWE-79",
+      "owasp_ref": "A03:2021"
+    }
+  ]
+}
+```

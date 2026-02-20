@@ -1,0 +1,17 @@
+diff --git a/app/db.py b/app/db.py
+index 1234567..abcdefg 100644
+--- a/app/db.py
++++ b/app/db.py
+@@ -10,6 +10,12 @@ import sqlite3
+
+ def get_user(username):
+     conn = sqlite3.connect("app.db")
++    # Vulnerable: string concatenation in SQL
++    query = "SELECT * FROM users WHERE username = '" + username + "'"
++    cursor = conn.execute(query)
++    return cursor.fetchone()
++
++def get_user_safe(username):
++    conn = sqlite3.connect("app.db")
+     cursor = conn.execute("SELECT * FROM users WHERE username = ?", (username,))
+     return cursor.fetchone()

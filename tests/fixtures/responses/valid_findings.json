@@ -1,0 +1,24 @@
+{
+  "findings": [
+    {
+      "title": "SQL Injection Vulnerability",
+      "severity": "CRITICAL",
+      "category": "security",
+      "description": "User input is concatenated directly into SQL query string without sanitization.",
+      "suggestion": "Use parameterized queries with placeholders instead of string concatenation.",
+      "line_number": 13,
+      "cwe_id": "CWE-89",
+      "owasp_ref": "A03:2021"
+    },
+    {
+      "title": "Hardcoded Database Path",
+      "severity": "LOW",
+      "category": "style",
+      "description": "Database path is hardcoded. Consider using configuration.",
+      "suggestion": "Move database path to environment variable or config file.",
+      "line_number": 12,
+      "cwe_id": null,
+      "owasp_ref": null
+    }
+  ]
+}

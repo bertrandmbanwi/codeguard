@@ -1,0 +1,94 @@
+name: CodeGuard Code Review
+description: AI-powered code review using LLMs for security, performance, and bug analysis
+
+inputs:
+  provider:
+    description: LLM provider to use (openai, anthropic, ollama)
+    required: false
+    default: ollama
+  model:
+    description: Model name to use (optional, defaults vary by provider)
+    required: false
+  api-key:
+    description: API key for the provider (optional, reads from env vars if not provided)
+    required: false
+  rules:
+    description: Rule categories to check (comma-separated)
+    required: false
+    default: security,performance,bugs
+  format:
+    description: Output format (table, json, markdown, sarif)
+    required: false
+    default: markdown
+  fail-on-severity:
+    description: Fail the action if findings at or above this severity are found
+    required: false
+  upload-sarif:
+    description: Upload SARIF report to GitHub code scanning
+    required: false
+    default: "true"
+
+runs:
+  using: composite
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install codeguard
+      shell: bash
+      run: |
+        pip install -e .
+
+    - name: Get PR diff
+      id: diff
+      shell: bash
+      run: |
+        if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+          git diff origin/${{ github.base_ref }}..HEAD > diff.patch
+        else
+          git diff HEAD~1 > diff.patch
+        fi
+        echo "diff-file=diff.patch" >> $GITHUB_OUTPUT
+
+    - name: Run codeguard review
+      id: review
+      shell: bash
+      run: |
+        set +e
+
+        ARGS="--file ${{ steps.diff.outputs.diff-file }}"
+        ARGS="$ARGS --provider ${{ inputs.provider }}"
+        if [[ -n "${{ inputs.model }}" ]]; then
+          ARGS="$ARGS --model ${{ inputs.model }}"
+        fi
+        ARGS="$ARGS --rules ${{ inputs.rules }}"
+        ARGS="$ARGS --format ${{ inputs.format }}"
+        if [[ -n "${{ inputs.fail-on-severity }}" ]]; then
+          ARGS="$ARGS --fail-on-severity ${{ inputs.fail-on-severity }}"
+        fi
+        ARGS="$ARGS --output report.${{ inputs.format }}"
+
+        if [[ -n "${{ inputs.api-key }}" ]]; then
+          export OPENAI_API_KEY="${{ inputs.api-key }}"
+          export ANTHROPIC_API_KEY="${{ inputs.api-key }}"
+        fi
+
+        codeguard review $ARGS
+        EXIT_CODE=$?
+
+        if [[ -f "report.${{ inputs.format }}" ]]; then
+          cat "report.${{ inputs.format }}" >> $GITHUB_STEP_SUMMARY
+        fi
+
+        exit $EXIT_CODE
+
+    - name: Upload SARIF (if enabled)
+      if: |
+        success() || failure() &&
+        inputs.upload-sarif == 'true' &&
+        inputs.format == 'sarif'
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: report.sarif

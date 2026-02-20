@@ -1,0 +1,37 @@
+diff --git a/src/auth.py b/src/auth.py
+new file mode 100644
+index 0000000..abcdefg
+--- /dev/null
++++ b/src/auth.py
+@@ -0,0 +1,15 @@
++import hashlib
++
++API_KEY = "sk-hardcoded-secret-key-12345"
++
++def authenticate(token):
++    if token == API_KEY:
++        return True
++    return False
++
++def hash_password(password):
++    return hashlib.md5(password.encode()).hexdigest()
++
++def verify_password(password, hashed):
++    return hash_password(password) == hashed
++
+diff --git a/src/utils.py b/src/utils.py
+index 1234567..abcdefg 100644
+--- a/src/utils.py
++++ b/src/utils.py
+@@ -1,5 +1,12 @@
+ import os
++import subprocess
+
+ def read_file(path):
+     with open(path) as f:
+         return f.read()
++
++def run_command(user_input):
++    # Vulnerable: command injection
++    result = subprocess.run(f"echo {user_input}", shell=True, capture_output=True)
++    return result.stdout.decode()

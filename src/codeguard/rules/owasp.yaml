@@ -1,0 +1,50 @@
+owasp_rules:
+  - id: A01:2021
+    title: Broken Access Control
+    category: security
+    description: Enforcement of policy such that users cannot act outside of their intended permissions
+
+  - id: A02:2021
+    title: Cryptographic Failures
+    category: security
+    description: Failures related to cryptography leading to exposure of sensitive data
+
+  - id: A03:2021
+    title: Injection
+    category: security
+    description: Application is vulnerable to injection attacks such as SQL injection, NoSQL injection, or OS command injection
+
+  - id: A04:2021
+    title: Insecure Design
+    category: security
+    description: Missing or ineffective control design for security requirements and threat modeling
+
+  - id: A05:2021
+    title: Security Misconfiguration
+    category: security
+    description: Missing appropriate security hardening across any part of the application stack
+
+  - id: A06:2021
+    title: Vulnerable and Outdated Components
+    category: security
+    description: Libraries, frameworks, and other software modules with known vulnerabilities
+
+  - id: A07:2021
+    title: Authentication and Session Management Failures
+    category: security
+    description: Compromises with user authentication or session management functions
+
+  - id: A08:2021
+    title: Software and Data Integrity Failures
+    category: security
+    description: Software updates, critical data, and CI/CD pipelines are vulnerable to integrity compromise
+
+  - id: A09:2021
+    title: Logging and Monitoring Failures
+    category: security
+    description: Insufficient logging and monitoring to detect and respond to active breaches
+
+  - id: A10:2021
+    title: Server-Side Request Forgery (SSRF)
+    category: security
+    description: Attackers can cause the application to make HTTP requests to unintended locations
