@@ -73,7 +73,9 @@ def render_markdown(report: CodeReviewReport) -> str:
     for severity in Severity:
         count = counts[severity.name]
         if count > 0:
-            lines.append(f"- **{severity.label}**: {count}")
+            lines.append(
+                f"- ![{severity.label}]({severity.badge}) **{count}**"
+            )
     lines.append("")
 
     # Summary by category
@@ -92,7 +94,9 @@ def render_markdown(report: CodeReviewReport) -> str:
     for i, finding in enumerate(report.findings, 1):
         lines.append(f"### {i}. {finding.title}")
         lines.append("")
-        lines.append(f"- **Severity:** {finding.severity.label} {finding.severity.icon}")
+        lines.append(
+            f"- **Severity:** ![{finding.severity.label}]({finding.severity.badge})"
+        )
         lines.append(f"- **Category:** {finding.category}")
         lines.append(f"- **File:** {finding.file_path}")
         if finding.line_number:

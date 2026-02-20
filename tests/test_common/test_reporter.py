@@ -44,8 +44,8 @@ class TestRenderMarkdown:
     def test_render_markdown_severity_summary(self, sample_report):
         output = render_markdown(sample_report)
         assert "## Summary by Severity" in output
-        assert "**CRITICAL**: 1" in output
-        assert "**HIGH**: 1" in output
+        assert "img.shields.io/badge/CRITICAL" in output
+        assert "img.shields.io/badge/HIGH" in output
 
     def test_render_markdown_findings_detail(self, sample_report):
         output = render_markdown(sample_report)

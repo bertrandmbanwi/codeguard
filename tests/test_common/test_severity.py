@@ -36,9 +36,19 @@ class TestSeverity:
         assert Severity.CRITICAL.color == "bold red"
 
     def test_severity_icons(self):
-        assert Severity.CRITICAL.icon == "\U0001f6a8"
-        assert Severity.HIGH.icon == "\U0001f534"
-        assert Severity.INFO.icon == "\u2139\ufe0f"
+        assert Severity.CRITICAL.icon == "✖"
+        assert Severity.HIGH.icon == "✖"
+        assert Severity.MEDIUM.icon == "◆"
+        assert Severity.LOW.icon == "▲"
+        assert Severity.INFO.icon == "●"
+
+    def test_severity_badges(self):
+        assert "img.shields.io" in Severity.CRITICAL.badge
+        assert "CRITICAL" in Severity.CRITICAL.badge
+        assert "HIGH" in Severity.HIGH.badge
+        assert "MEDIUM" in Severity.MEDIUM.badge
+        assert "LOW" in Severity.LOW.badge
+        assert "INFO" in Severity.INFO.badge
 
     def test_from_string_valid(self):
         assert Severity.from_string("INFO") == Severity.INFO

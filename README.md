@@ -141,7 +141,7 @@ jobs:
 ┏━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━┓
 ┃ Severity   ┃ Categor ┃ Title   ┃ File:Li ┃ Description     ┃
 ┡━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━━━━┩
-│ 🚨 CRITICAL│ securit │ SQL Inj │ app.py: │ SQL injection v │
+│ ✖ CRITICAL │ securit │ SQL Inj │ app.py: │ SQL injection v │
 └────────────┴─────────┴─────────┴─────────┴─────────────────┘
 
 Total: 1 | CRITICAL: 1 | HIGH: 0 | MEDIUM: 0 | LOW: 0 | INFO: 0
@@ -178,13 +178,13 @@ Total: 1 | CRITICAL: 1 | HIGH: 0 | MEDIUM: 0 | LOW: 0 | INFO: 0
 
 ## Summary by Severity
 
-- **CRITICAL**: 1
+- ![CRITICAL](https://img.shields.io/badge/CRITICAL-B71C1C?style=flat-square) **1**
 
 ## Findings
 
 ### 1. SQL Injection Vulnerability
 
-- **Severity:** CRITICAL 🚨
+- **Severity:** ![CRITICAL](https://img.shields.io/badge/CRITICAL-B71C1C?style=flat-square)
 - **Category:** security
 - **File:** app.py
 - **Line:** 5
@@ -222,11 +222,13 @@ export CODEGUARD_FAIL_ON_SEVERITY=HIGH
 
 ## Severity Levels
 
-- **CRITICAL**: Security vulnerability or data loss risk
-- **HIGH**: Major bug or significant performance issue
-- **MEDIUM**: Moderate issue affecting functionality
-- **LOW**: Minor issue or improvement opportunity
-- **INFO**: Informational, best practice recommendation
+| Level | Description |
+|-------|-------------|
+| ![CRITICAL](https://img.shields.io/badge/CRITICAL-B71C1C?style=flat-square) | Security vulnerability or data loss risk |
+| ![HIGH](https://img.shields.io/badge/HIGH-E53935?style=flat-square) | Major bug or significant performance issue |
+| ![MEDIUM](https://img.shields.io/badge/MEDIUM-ED8B00?style=flat-square) | Moderate issue affecting functionality |
+| ![LOW](https://img.shields.io/badge/LOW-F5C518?style=flat-square) | Minor issue or improvement opportunity |
+| ![INFO](https://img.shields.io/badge/INFO-5B9BD5?style=flat-square) | Informational, best practice recommendation |
 
 ## Rule Categories
 
